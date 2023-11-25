@@ -1,0 +1,25 @@
+services:
+  php-fpm:
+    image: registry.cheriches.eu/php-fpm-alpine-nc:2023112510
+    volumes:
+      - ./html:/var/www/html
+  cron:
+    image: registry.cheriches.eu/php-fpm-alpine-nc:2023112510
+    volumes:
+      - ./html:/var/www/html
+    entrypoint: /cron.sh
+  nginx:
+    image: registry.cheriches.eu/nginx-alpine-nc:2023112510
+    ports:
+      - 8088:80
+    volumes:
+      - ./html:/var/www/html
+  pgsql:
+    image: docker.io/postgres:16-alpine
+    environment:
+      - POSTGRES_PASSWORD=postgress_password
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: docker.io/redis:latest

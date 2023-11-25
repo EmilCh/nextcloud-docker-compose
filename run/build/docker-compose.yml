@@ -1,0 +1,7 @@
+services:
+  php-fpm:
+    build: php-fpm
+    image: registry.cheriches.eu/php-fpm-alpine-nc:2023112510
+  nginx:
+    build: nginx
+    image: registry.cheriches.eu/nginx-alpine-nc:2023112510
